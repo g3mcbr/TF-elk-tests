@@ -1,0 +1,20 @@
+[
+  {
+    "name": "kibana",
+    "image": "wazuh/wazuh-kibana",
+    "cpu": 10,
+    "memory": 500,
+    "environment": [
+    {"name": "NODE_OPTIONS", "value": "--max-old-space-size=3072"},
+    {"name": "ELASTICSEARCH_URL", "value": "http://internal-elk-test-internal-elb-642055117.us-east-1.elb.amazonaws.com:9200"}
+    ],
+    "portMappings": [
+        {
+            "containerPort": 5601,
+            "hostPort": 5601
+        }
+    ],
+    "entryPoint": ["/wait-for-it.sh", "internal-elk-test-internal-elb-642055117.us-east-1.elb.amazonaws.com"],
+    "essential": true
+  }
+]

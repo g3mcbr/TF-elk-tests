@@ -1,0 +1,79 @@
+[
+  {
+      "name": "wazuh",
+      "image": "wazuh/wazuh",
+      "cpu": 10,
+      "memory": 500,
+      "portMappings": [
+          {
+              "containerPort": 1514,
+              "hostPort": 1514,
+              "protocol": "udp"
+          },
+          {
+              "containerPort": 1515,
+              "hostPort": 1515
+          },
+          {
+              "containerPort": 1516,
+              "hostPort": 1516
+          },
+          {
+              "containerPort": 514,
+              "hostPort": 514,
+              "protocol": "udp"
+          },
+          {
+              "containerPort": 55000,
+              "hostPort": 55000
+          }
+      ],
+      "entryPoint": [],
+      "essential": true
+  },
+  {
+      "name": "logstash",
+      "image": "462818068088.dkr.ecr.us-east-1.amazonaws.com/custom_logstash",
+      "cpu": 10,
+      "memory": 2048,
+      "environment": [
+      {"name": "LS_HEAP_SIZE", "value": "2048m"},
+      {"name": "XPACK_MONITORING_ENABLED", "value": "false"},
+      {"name": "ELASTICSEARCH_URL", "value": "http://${elasticsearch_node}:9200"},
+      {"name": "ELASTICSEARCH_NODE", "value": "${elasticsearch_node}"}
+      ],
+      "links": [
+        "kibana:kibana"
+      ],
+      "portMappings": [
+          {
+              "containerPort": 5000,
+              "hostPort": 5000
+          }
+      ],
+      "entryPoint": ["/fixlogstashconfig.sh"],
+      "command": ["-f", "/etc/logstash/conf.d/"],
+      "essential": true
+  },
+  {
+    "name": "kibana",
+    "image": "462818068088.dkr.ecr.us-east-1.amazonaws.com/custom_kibana",
+    "cpu": 10,
+    "memory": 500,
+    "environment": [
+    {"name": "NODE_OPTIONS", "value": "--max-old-space-size=3072"},
+    {"name": "ELASTICSEARCH_URL", "value": "http://${elasticsearch_node}:9200"}
+    ],
+    "links": [
+      "wazuh"
+    ],
+    "portMappings": [
+        {
+            "containerPort": 5601,
+            "hostPort": 5601
+        }
+    ],
+    "entryPoint": ["/fixconfig.sh","/wait-for-it.sh", "${elasticsearch_node}"],
+    "essential": true
+  }
+]

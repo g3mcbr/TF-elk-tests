@@ -1,0 +1,24 @@
+[
+  {
+      "name": "wazuhmgr",
+      "image": "wazuh/wazuh",
+      "cpu": 10,
+      "memory": 500,
+      "portMappings": [
+          {
+              "containerPort": 1514,
+              "hostPort": 1514
+          },
+          {
+              "containerPort": 1515,
+              "hostPort": 1515
+          },
+          {
+              "containerPort": 1516,
+              "hostPort": 1516
+          }
+      ],
+      "entryPoint": [],
+      "essential": true
+  }
+]

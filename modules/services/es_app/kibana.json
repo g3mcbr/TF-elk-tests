@@ -1,0 +1,22 @@
+[
+  {
+    "name": "kibana",
+    "image": "wazuh/wazuh-kibana",
+    "cpu": 10,
+    "memory": 500,
+    "environment": [
+    {"name": "NODE_OPTIONS", "value": "--max-old-space-size=3072"}
+    ],
+    "links": [
+      "elasticsearch:elasticsearch"
+    ],
+    "portMappings": [
+        {
+            "containerPort": 5601,
+            "hostPort": 5601
+        }
+    ],
+    "entryPoint": ["/wait-for-it.sh", "elasticsearch"],
+    "essential": true
+  }
+]

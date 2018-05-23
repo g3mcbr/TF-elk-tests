@@ -1,0 +1,17 @@
+[
+  {
+    "name": "kibana",
+    "image": "docker.elastic.co/kibana/kibana:6.2.4",
+    "cpu": 10,
+    "memory": 1024,
+    "environment": [
+    {"name": "ELASTICSEARCH_URL", "value": "http://${elasticsearch_node}:9200"}
+    ],
+    "portMappings": [
+        {
+            "containerPort": 5601,
+            "hostPort": 5601
+        }
+    ]
+  }
+]

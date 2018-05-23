@@ -1,0 +1,14 @@
+curl -s -u foo:bar -k -X GET https://localhost:55000/agents
+
+[ec2-user@ip-10-0-11-152 ~]$ curl -i -s -u foo:bar -k -X GET https://localhost:55000/agents
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Access-Control-Allow-Origin: *
+Content-Type: application/json; charset=utf-8
+Content-Length: 464
+ETag: W/"1d0-7nRkY9k25k98BrsytE7k6DzZJww"
+Date: Fri, 11 May 2018 01:07:05 GMT
+Connection: keep-alive
+
+{"error":0,"data":{"totalItems":1,"items":[{"status":"Active","name":"cc8c4a547998","ip":"127.0.0.1","dateAdd":"2018-05-07 23:56:09","version":"Wazuh v3.2.2","manager_host":"cc8c4a547998","lastKeepAlive":"9999-12-31 23:59:59","os":{"major":"16","name":"Ubuntu","uname":"Linux |cc8c4a547998 |4.9.81-35.56.amzn1.x86_64 |#1 SMP Fri Feb 16 00:18:48 UTC 2018 |x86_64","platform":"ubuntu","version":"16.04.4 LTS","codename":"Xenial Xerus","arch":"x86_64"},"id":"000"}]}}[ec2-user@ip-10-0-11-152 ~]$ 
+
