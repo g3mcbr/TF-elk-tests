@@ -8,6 +8,10 @@ data "aws_ecs_task_definition" "app_task" {
 resource "aws_ecs_task_definition" "app_task" {
   family                = "${var.app_name}-${var.app_env}-${var.app_svc}"
   container_definitions = "${var.container_def_json}"
+  volume {
+    name                = "wazuh-slave-config"
+    host_path           = "/wazuh/slave"
+  }
 }
 
 resource "aws_ecs_service" "app_svc" {

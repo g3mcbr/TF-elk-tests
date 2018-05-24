@@ -21,6 +21,12 @@
               "hostPort": 1516
           }
       ],
+      "mountpoints":[
+          {
+            "sourceVolume": "wazuh-slave-config",
+            "containerPath": "/wazuh-config-mount/"
+          }
+      ],
       "entryPoint": ["/fixwazconfig.sh"],
       "essential": true
   }

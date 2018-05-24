@@ -10,6 +10,10 @@ output "lk_cluster" {
     value = "${module.cluster_lk.ecs_cluster}"
 }
 
+output "internal_ips" {
+  value = "${module.cluster_lk.internal_ips}"
+}
+
 ######
 #output "internal_nlb_name" {
 #  value = "${module.internal_nlb.internal_nlb_name}"

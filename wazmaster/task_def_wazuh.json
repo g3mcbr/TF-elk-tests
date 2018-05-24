@@ -25,6 +25,12 @@
               "hostPort": 55000
           }
       ],
+      "mountpoints":[
+          {
+            "sourceVolume": "wazuh-master-config",
+            "containerPath": "/wazuh-config-mount/"
+          }
+      ],
       "entryPoint": ["/fixwazconfig.sh"],
       "essential": true
   }

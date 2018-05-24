@@ -9,6 +9,10 @@ resource "aws_ecs_task_definition" "app_task" {
   family                = "${var.app_name}-${var.app_env}-${var.app_svc}"
 #  container_definitions = "${file("${path.module}/wazuh.json")}"
   container_definitions = "${var.container_def_json}"
+  volume {
+    name                = "wazuh-master-config"
+    host_path           = "/wazuh/master"
+  }
 }
 
 resource "aws_ecs_service" "app_svc" {
