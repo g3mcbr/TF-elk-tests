@@ -79,7 +79,7 @@ resource "aws_security_group" "public-allow-inbound" {
       to_port     = 22
       protocol    = "tcp"
       # add your ip here
-      cidr_blocks = ["162.40.29.3/32","69.23.235.72/32"]
+      cidr_blocks = ["69.23.235.72/32"]
   }
 
   ingress {

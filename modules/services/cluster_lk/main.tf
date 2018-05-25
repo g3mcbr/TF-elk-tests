@@ -52,30 +52,6 @@ resource "aws_security_group" "logstash-inbound" {
   }
 
   ingress {
-      from_port   = 80
-      to_port     = 80
-      protocol    = "tcp"
-      # add your ip here
-      cidr_blocks = ["162.40.29.3/32"]
-  }
-
-  ingress {
-      from_port   = 5601
-      to_port     = 5601
-      protocol    = "tcp"
-      # add your ip here
-      cidr_blocks = ["162.40.29.3/32"]
-  }
-
-  ingress {
-      from_port   = 1514
-      to_port     = 1514
-      protocol    = "tcp"
-      # add your ip here
-      cidr_blocks = ["162.40.29.3/32"]
-  }
-
-  ingress {
       from_port   = 5601
       to_port     = 5601
       protocol    = "tcp"
